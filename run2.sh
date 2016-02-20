@@ -67,7 +67,7 @@ hg19genome="$datasets/genome/hg19.genome"
 
 answer_5=$(bedtools complement -i $genes -g $hg19genome \
     | bedtools sort -i - \
-    | awk 'BEGIN{OFS ="\t"} {print $0, ($3-$2)}' \
+    | awk 'BEGIN{OFS ="\t"} ($1 =="chr22") {print $0, ($3-$2)}' \
     | sort -k4nr \
     | awk '{OFS=""} {print $1, ":", $2, "-", $3}' \
     | head -n1)
