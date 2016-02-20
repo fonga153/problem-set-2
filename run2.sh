@@ -69,7 +69,7 @@ answer_5=$(bedtools complement -i $genes -g $hg19genome \
     | bedtools sort -i - \
     | awk 'BEGIN{OFS ="\t"} {print $0, ($3-$2)}' \
     | sort -k4nr \
-    | awk '{print $1, ":", $2, "-", $3}' \
+    | awk '{OFS=""} {print $1, ":", $2, "-", $3}' \
     | head -n1)
 
 echo "answer_5: $answer_5" >> answers.yml
