@@ -12,7 +12,7 @@ answer_1=$(bedtools intersect -a $tfbs -b $h3k4me3 -wo \
     | sort -k1nr \
     | head -n1)
 
-echo "answer_1: $answer_1" > answers.yml
+echo "answer-1: $answer_1" > answers.yml
 
 #Use BEDtools to calculate the GC content of nucleotides 19,000,000 to
 #19,000,500 on chr22 of hg19 genome build. Report the GC content as a
@@ -25,7 +25,7 @@ echo -e "chr22\t19000000\t19000500" > posnuc.bed
 
 a2=$(bedtools nuc -fi $chr22fafile -bed posnuc.bed | cut -f5 | tail -n1) 
 
-echo "answer_2: $a2" >> answers.yml
+echo "answer-2: $a2" >> answers.yml
 
 
 #Use BEDtools to identify the length of the CTCF ChIP-seq peak (i.e.,
@@ -40,7 +40,7 @@ answer_3=$(bedtools map -a $peakschr22 -b $ctcfhelachr22 -c 4 -o mean \
     | awk '{print $3-$2}' \
     | head -n1)
 
-echo "answer_3: $answer_3" >> answers.yml
+echo "answer-3: $answer_3" >> answers.yml
 
 #Use BEDtools to identify the gene promoter (defined as 1000 bp upstream
 #of a TSS) with the highest median signal in ctcf.hela.chr22.bg.gz. Report
@@ -57,7 +57,7 @@ answer_4=$(bedtools flank -b 1000 -i $tss -g $hg19 | bedtools sort -i - \
     | head -n1 \
     | cut -f4)
 
-echo "answer_4: $answer_4" >> answers.yml
+echo "answer-4: $answer_4" >> answers.yml
 
 #Use BEDtools to identify the longest interval on chr22 that is not
 #covered by genes.hg19.bed.gz. Report the interval like chr1:100-500.
@@ -72,7 +72,7 @@ answer_5=$(bedtools complement -i $genes -g $hg19genome \
     | awk '{OFS=""} {print $1, ":", $2, "-", $3}' \
     | head -n1)
 
-echo "answer_5: $answer_5" >> answers.yml
+echo "answer-5: $answer_5" >> answers.yml
 
 #changed answer5 to be chr22 only
 
