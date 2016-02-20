@@ -74,4 +74,6 @@ answer_5=$(bedtools complement -i $genes -g $hg19genome \
 
 echo "answer_5: $answer_5" >> answers.yml
 
+#changed answer5 to be chr22 only
+
 
